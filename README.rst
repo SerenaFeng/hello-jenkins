@@ -5,7 +5,12 @@ jenkins practice
 continuous delivery of projects, regardless of the platform you are working
 on.
 
+Start jenkins container
+-----------------------
 
+::
+
+  docker run -d -p 49001:8080 -v ~/jenkins-volume:/var/jenkins_home:z -t jenkins
 
 
 
