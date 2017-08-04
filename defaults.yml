@@ -1,0 +1,5 @@
+# jjb defaults
+
+- defaults:
+    name: global
+

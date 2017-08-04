@@ -1,0 +1,38 @@
+- project:
+    name: serena-st
+    project: '{name}'
+    stream:
+        - master:
+            branch: {stream}
+    jobs:
+        - '{name}-runST-{stream}'
+
+- job-template:
+    name: '{name}-runST-{stream}'
+    builders:
+        - shell: |
+            #!/bin/bash -xe
+            echo 'jjb publiser practice'
+            exit 1
+    scm:
+      - git-scm
+    publishers:
+        - email-on-failure:
+            recipients: '${{DEFAULT_RECIPIENTS}}'
+            content-type: html
+            body: "
+<html>
+  <body>
+    <br>
+    LOG INFO:
+    <br>
+    <a href=\"$LOG_SERVER/$JOB_NAME/${{BUILD_TIMESTAMP}}_$BUILD_ID\" target=_blank>$LOG_SERVER/$JOB_NAME/${{BUILD_TIMESTAMP}}_$BUILD_ID</a>
+    <br>
+    <br>
+    UPDATE LIST:
+    <br>
+    ${{FILE, path=\"$WORKSPACE/each_job_file/$BUILD_ID/compare/update.list\"}}
+  </body>
+</html>
+"
+
