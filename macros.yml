@@ -28,3 +28,16 @@
             send-to:
                 - recipients
 
+- publisher:
+    name: email-on-success
+    publishers:
+        - email-ext:
+            recipients: '{recipients}'
+            body: '{body}'
+            content-type: '{content-type}'
+            always: false
+            failure: false
+            success: true
+            send-to:
+                - recipients
+
