@@ -3,3 +3,4 @@
 - defaults:
     name: global
 
+    LOG_SERVER: http://10.62.87.18:42315

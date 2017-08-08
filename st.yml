@@ -1,54 +1,36 @@
 - project:
-    name: serena-st
+    name: hello-jenkins
     project: '{name}'
     stream:
         - master:
             branch: {stream}
     jobs:
-        - '{name}-runST-{stream}'
+        - '{name}-{stream}'
 
 - job-template:
-    name: '{name}-runST-{stream}'
+    name: '{name}-{stream}'
     builders:
         - shell: |
             #!/bin/bash -xe
             echo 'jjb publiser practice'
     #        exit 1
+    scm:
+#        - scm-gerrit:
+#            GIT_BASE: https://github.com/SerenaFeng/hello-php.git
+        - scm-gerrit
+#            GIT_BASE: https://github.com/SerenaFeng/hello-jenkins.git
+    parameters:
+        - string:
+            name: GIT_BASE
+            default: https://github.com/SerenaFeng/hello-jenkins.git
+            description: 'hello-jenkins github'
     publishers:
         - email-on-failure:
             recipients: $DEFAULT_RECIPIENTS, feng.xiaowei@zte.com.cn
-            content-type: html
-            body: '
-<html>
-  <body>
-    <br>
-    LOG INFO:
-    <br>
-    <a href="$LOG_SERVER/$JOB_NAME/${{BUILD_TIMESTAMP}}_$BUILD_ID" target=_blank>$LOG_SERVER/$JOB_NAME/${{BUILD_TIMESTAMP}}_$BUILD_ID</a>
-    <br>
-    <br>
-    UPDATE LIST:
-    <br>
-    ${{FILE, path="$WORKSPACE/each_job_file/$BUILD_ID/compare/update.list"}}
-  </body>
-</html>
-'
+            content-type: text
+            body: 'tests failure'
         - email-on-success:
             recipients: $DEFAULT_RECIPIENTS
-            content-type: html
-            body: '
-<html>
-  <body>
-    <br>
-    FAIL LOG INFO:
-    <br>
-    <a href="$LOG_SERVER/$JOB_NAME/${{BUILD_TIMESTAMP}}_$BUILD_ID" target=_blank>$LOG_SERVER/$JOB_NAME/${{BUILD_TIMESTAMP}}_$BUILD_ID</a>
-    <br>
-    <br>
-    UPDATE LIST:
-    <br>
-    ${{FILE, path="$WORKSPACE/each_job_file/$BUILD_ID/compare/update.list"}}
-  </body>
-</html>
-'
+            content-type: text
+            body: 'tests success'
 

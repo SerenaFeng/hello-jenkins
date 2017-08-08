@@ -1,11 +1,11 @@
 - scm:
-    name: git-scm
+    name: scm-gerrit
     scm:
         - git: &git-scm-defaults
-            credentials-id: '3312a982-70ab-454c-88b0-d4a912de3951'
-            url: 'VDCTC_GERRIT'
+            credentials-id: test_scm_id
+            url: '$GIT_BASE'
             branches:
-                - 'origin/$BRANCH'
+                - 'origin/master'
             timeout: 15
 
 - scm:
@@ -15,6 +15,7 @@
             choosing-strategy: 'gerrit'
             refspec: '$GERRIT_REFSPEC'
             <<: *git-scm-defaults
+
 
 - publisher:
     name: email-on-failure
