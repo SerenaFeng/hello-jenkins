@@ -2,6 +2,10 @@
     name: project-parameter
     parameters:
         - string:
+            name: GIT_BASE
+            default: 'https://github.com/SerenaFeng'
+            description: "Base Git URL"
+        - string:
             name: VDCTC_GERRIT
             default: '{vdctc_gerrit}'
             description: "Git URL to use on this Jenkins Slave"
@@ -9,6 +13,10 @@
             name: PROJECT_GERRIT
             default: '{project_gerrit}'
             description: "Git URL to use on this Jenkins Slave"
+        - string:
+            name: BRANCH
+            default: '{branch}'
+            description: "JJB configured BRANCH parameter (e.g. master, bugfix)"
 
 - scm:
     name: scm-gerrit-vdctc
@@ -16,7 +24,7 @@
       - git-scm-gerrit:
           credentials-id: scm_test_id
           url: '$VDCTC_GERRIT'
-
+          basedir: 'vdctc'
 
 - scm:
     name: scm-gerrit-project
@@ -24,6 +32,7 @@
       - git-scm-gerrit: 
           credentials-id: scm_test_id
           url: '$PROJECT_GERRIT'
+          basedir: 'project'
 
 - scm:
     name: git-scm-gerrit
@@ -31,10 +40,11 @@
       - git:
 #          choosing-strategy: 'gerrit'
 #          refspec: '$GERRIT_REFSPEC'
-          url: '{url}'
+          basedir: '{basedir}'
+          url: '$GIT_BASE/{url}.git'
           credentials-id: '{credentials-id}'
           branches:
-            - 'origin/master'
+            - 'origin/$BRANCH'
           timeout: 15
 
 - scm:

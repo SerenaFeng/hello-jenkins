@@ -2,8 +2,9 @@
     name: hello-jenkins
     project: '{name}'
     stream:
-        - master:
-            branch: {stream}
+      - master: 
+          branch: {stream}
+
     jobs:
         - '{name}-{stream}'
 
@@ -12,13 +13,15 @@
     builders:
         - shell: |
             #!/bin/bash -xe
-            bash $WORKSPACE/hello-jenkins/hello_jenkins/builder.sh
+            bash $WORKSPACE/vdctc/hello_jenkins/builder.sh
+            bash $WORKSPACE/project/h2/he_builder.sh
     scm:
         - scm-gerrit
     parameters:
         - project-parameter:
-            vdctc_gerrit: https://github.com/SerenaFeng/hello-jenkins.git
-            project_gerrit: https://github.com/SerenaFeng/hello-php.git
+            vdctc_gerrit: hello-jenkins
+            project_gerrit: hello-jenkins-sub
+            branch: '{stream}'
     publishers:
         - email-on-failure:
             recipients: $DEFAULT_RECIPIENTS, feng.xiaowei@zte.com.cn
