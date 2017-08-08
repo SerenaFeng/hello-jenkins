@@ -12,8 +12,7 @@
     builders:
         - shell: |
             #!/bin/bash -xe
-            echo 'jjb publiser practice'
-    #        exit 1
+            bash $WORKSPACE/hello-jenkins/hello_jenkins/builder.sh
     scm:
         - scm-gerrit
     parameters:
