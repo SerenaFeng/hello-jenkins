@@ -15,15 +15,11 @@
             echo 'jjb publiser practice'
     #        exit 1
     scm:
-#        - scm-gerrit:
-#            GIT_BASE: https://github.com/SerenaFeng/hello-php.git
         - scm-gerrit
-#            GIT_BASE: https://github.com/SerenaFeng/hello-jenkins.git
     parameters:
-        - string:
-            name: GIT_BASE
-            default: https://github.com/SerenaFeng/hello-jenkins.git
-            description: 'hello-jenkins github'
+        - project-parameter:
+            vdctc_gerrit: https://github.com/SerenaFeng/hello-jenkins.git
+            project_gerrit: https://github.com/SerenaFeng/hello-php.git
     publishers:
         - email-on-failure:
             recipients: $DEFAULT_RECIPIENTS, feng.xiaowei@zte.com.cn
