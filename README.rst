@@ -19,6 +19,11 @@ Install jenkins-job-builder
 ::
   pip install --user jenkins-job-builder
 
+`Missing admin`_ :(
+--------------------
+Access Denied
+
+<user> is missing the Overall/Read permission
 
 
 
@@ -32,3 +37,4 @@ Install jenkins-job-builder
 
 .. _Jenkins: https://www.tutorialspoint.com/jenkins/index.htm
 .. _Start jenkins container: https://github.com/jenkinsci/docker/blob/master/README.md
+.. _Missing admin: https://stackoverflow.com/questions/22717773/jenkins-github-authentication-error-user-is-missing-the-overall-read-permission
