@@ -3,7 +3,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'first github job'
+                echo 'start to build hello-jenkins'
+                bash hello_jenkins/builder.sh
             }
         }
     }
