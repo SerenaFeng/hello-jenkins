@@ -1,1 +1,1 @@
-echo 'build hello-jenkins\n'
+echo 'build hello-jenkins branch A\n'
