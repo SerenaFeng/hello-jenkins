@@ -1,1 +1,1 @@
-echo 'build hello-jenkins branch A\n'
+echo 'check GitHub hook trigger for GITScm polling\n'
