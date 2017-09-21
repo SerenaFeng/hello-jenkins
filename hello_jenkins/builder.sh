@@ -1,1 +1,1 @@
-echo 'check GitHub hook trigger for GITScm polling\n'
+echo 'test GitHub hook trigger for GITScm polling\n'
